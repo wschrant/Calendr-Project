@@ -7,12 +7,15 @@ class User(models.Model):
     email = models.CharField(max_length=100, unique=True)
     username = models.CharField(max_length=40, unique=True)
     password = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='users')
     type = models.CharField(max_length=40)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
 class Group(models.Model):
     name = models.CharField(max_length=255)
+    content = models.TextField()
+    image = models.ImageField(upload_to='groups')
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
