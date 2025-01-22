@@ -16,10 +16,9 @@ class UserSerializer(serializers.ModelSerializer):
             'password', 
             'image', 
             'role', 
-            'created_date', 
             'updated_date'
         ]
-        read_only_fields = ['created_date', 'updated_date']
+        read_only_fields = ['updated_date']
 
     def create(self, validated_data):
         # Use set_password to hash the password
@@ -85,3 +84,15 @@ class ToDoPostSerializer(serializers.ModelSerializer):
         if value < date.today():
             raise serializers.ValidationError("The date cannot be in the past.")
         return value
+    
+class ScheduleConnectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ScheduleConnection
+        fields = [
+            "id",
+            "user_one",
+            "user_two",
+            "created_date", 
+            "updated_date"            
+        ]
+        read_only_fields = ['created_date', 'updated_date']

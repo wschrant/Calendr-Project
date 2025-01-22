@@ -10,7 +10,6 @@ class User(AbstractUser):
     email = models.EmailField('Email', max_length=100, unique=True)
     image = models.ImageField('User Image', null=True, blank=True, upload_to='user_images/')
     role = models.CharField('Role', max_length=40, default='user')
-    created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -53,3 +52,9 @@ class ToDoPost(models.Model):
 
     def __str__(self):
         return self.title
+    
+class ScheduleConnection(models.Model):
+    user_one = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_one")
+    user_two = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_two")
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
